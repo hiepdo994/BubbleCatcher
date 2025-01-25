@@ -27,8 +27,8 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
-    // character movement if knock back counter detected then do else and add force
-    // to knock back player movement
+    // character movement if knock back counter increase
+    //then stop velocity in update and fixed update and add force to object for knock back 
     void Update()
     {
         if (KBCounter <= 0)
@@ -48,21 +48,24 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
+            float KBVerticalForce = KBForce * .5f;
             if (KnockFromRight == true)
             {
-                rb.velocity = new Vector2(KBForce, KBForce);
+                rb.velocity = new Vector2(-KBForce, KBForce);
             }
             if (KnockFromRight == false)
             {
-                rb.velocity = new Vector2(-KBForce, KBForce);
+                rb.velocity = new Vector2(KBForce, KBForce);
             }
             KBCounter -= Time.deltaTime;
         }
     }
-
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        if (KBCounter <= 0)
+        {
+            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        }
     }
 
     private void Flip()

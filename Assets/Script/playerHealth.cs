@@ -4,22 +4,31 @@ using UnityEngine;
 
 public class playerHealth : MonoBehaviour
 {
-    int health;
+
+    //attach to monster damage script if player touch then it will call this script 
+    public FlashDamage flashing;
+
+    //adjust health for testing
+    [SerializeField]
+    
+    private int health;
     void Start()
     {
-        health = 5;
     }
-
-    void Update()
+    public void TakeDamage()
     {
-       
+           
+            if (health > 0)
+            {
+                health--;
+                Debug.Log("Take Damage " + health);
+            flashing.Flash();
+            }
+            if (health <= 0)
+            {
+                health = 0; // Clamp health to zero
+                Debug.Log("Game Over");
+            }
+
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {   if (collision.gameObject.CompareTag("Enemy"))
-        {
-            health--;
-            Debug.Log("Health is: " + health);
-            //knockback();
-        }      
-     }
 }
