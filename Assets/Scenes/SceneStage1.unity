@@ -24920,6 +24920,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2059278377}
+    - target: {fileID: 5788614256782641147, guid: 8b1b63bef7cdcd04989b9bc590df553c, type: 3}
+      propertyPath: m_text
+      value: Go forth and collect 3 stars to win. Good luck
+      objectReference: {fileID: 0}
+    - target: {fileID: 5788614257321160237, guid: 8b1b63bef7cdcd04989b9bc590df553c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7489506150450202273, guid: 8b1b63bef7cdcd04989b9bc590df553c, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -25007,6 +25015,10 @@ PrefabInstance:
     - target: {fileID: 7489506150450202334, guid: 8b1b63bef7cdcd04989b9bc590df553c, type: 3}
       propertyPath: m_Name
       value: MenuCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7489506151748194351, guid: 8b1b63bef7cdcd04989b9bc590df553c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b1b63bef7cdcd04989b9bc590df553c, type: 3}
