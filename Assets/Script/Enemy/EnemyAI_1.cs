@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyAI_1 : MonoBehaviour
 {
+    public float airTime;
     public GameObject bubble;
     public bool canMove;
     public float speed;
@@ -56,7 +55,7 @@ public class EnemyAI_1 : MonoBehaviour
             // Add vertical oscillation (if necessary)
             if (!canMove)
             {
-                transform.position = new Vector2(transform.position.x, Mathf.Sin(Time.time * freq) * amp + 5f);
+                transform.position = new Vector2(transform.position.x, Mathf.Sin(Time.time * freq) * amp + airTime);
             }
         }
     }
@@ -71,10 +70,26 @@ public class EnemyAI_1 : MonoBehaviour
         {
             Flip();
         }
-    }
+        if (Wall())
+        {
+            Flip();
+        }
 
+    }
+    private bool Wall()
+    {
+        RaycastHit2D hit =
+            Physics2D.BoxCast(BoxCollider2D.bounds.center + transform.right * range * transform.localScale.x * colliderDistance,
+            new Vector3(BoxCollider2D.bounds.size.x * range, BoxCollider2D.bounds.size.y, BoxCollider2D.bounds.size.z),
+            0, Vector2.left, 0, playerLayer);
+
+
+
+        return hit.collider != null;
+    }
     public void Hit()
     {
+        bubble.SetActive(true);
         canMove = false;
         animator.SetBool("Hit", true);
     }
