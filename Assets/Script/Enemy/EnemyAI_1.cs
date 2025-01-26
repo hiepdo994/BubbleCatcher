@@ -9,6 +9,7 @@ public class EnemyAI_1 : MonoBehaviour
     public GameObject groundCheck;
     public LayerMask groundLayer;
     public Transform player;
+    public Animator animator;
 
     public bool facingRight;
     public bool grounded;
@@ -49,24 +50,21 @@ public class EnemyAI_1 : MonoBehaviour
                 Flip();
             }
         }
+        else
+        {
+            rb.velocity = Vector2.zero;
+            transform.position = new Vector2(transform.position.x, Mathf.Sin(Time.time * freq) * amp + 5f);
+        }
 
 
     }
     public void Hit()
     {
-        rb.velocity = Vector2.zero;
-        transform.position = new Vector2(transform.position.x, Mathf.Sin(Time.time * freq) * amp + 5f);
-        groundCheck = null;
+        canMove = false;
+        animator.SetBool("Hit", true);
     }
 
-    private bool PlayerInsight()
-    {
-        RaycastHit2D hit = Physics2D.BoxCast(BoxCollider2D.bounds.center + transform.right * range * transform.lossyScale.x * colliderDistance,
-            new Vector3(BoxCollider2D.bounds.size.x * range, BoxCollider2D.bounds.size.y, BoxCollider2D.bounds.size.z),
-            0, Vector2.left, 0, playerLayer);
-        return hit.collider != null;
-    }
-
+   
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

@@ -9,7 +9,8 @@ public class AimAndShoot : MonoBehaviour
     private Camera mainCam;
     private Vector3 mousePos;
     private float timer;
-
+    
+    public Animator animator;
     public float scalingDuration;
     public GameObject bullet;
     public Transform weaponTransform;
@@ -34,7 +35,7 @@ public class AimAndShoot : MonoBehaviour
 
         if (!canFire)
         {
-            timer = Time.deltaTime;
+            timer += Time.deltaTime;
             if (timer > timeBetweenFire)
             {
                 canFire = true;
@@ -44,7 +45,13 @@ public class AimAndShoot : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && canFire)
         {
             canFire = false;
-            GameObject projectile = Instantiate(bullet, weaponTransform.position, Quaternion.identity);
+            animator.SetTrigger("Attack");
+            
         }
+    }
+
+    void Firing()
+    {
+        GameObject projectile = Instantiate(bullet, weaponTransform.position, Quaternion.identity);
     }
 }
