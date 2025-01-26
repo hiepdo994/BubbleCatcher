@@ -39,17 +39,11 @@ public class PlayerMovement : MonoBehaviour
 
             if (Input.GetButtonDown("Jump") && IsGrounded())
             {
-                rb.velocity = new Vector2(rb.velocity.x, jump);
                 Animator.SetBool("Jump", true);
             }
             else Animator.SetBool("Jump", false);
 
-            if (Input.GetButtonUp("Jump") && rb.velocity.y > 0)
-            {
-                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
-                Animator.SetBool("Jump", true);
-            }
-            else Animator.SetBool("Jump", false);
+           
             Flip();
         }
         else
@@ -64,6 +58,12 @@ public class PlayerMovement : MonoBehaviour
             }
             KBCounter -= Time.deltaTime;
         }
+    }
+
+    void Jump()
+    {
+        rb.velocity = new Vector2(rb.velocity.x, jump);
+        Animator.SetBool("Jump", true);
     }
 
     private void FixedUpdate()

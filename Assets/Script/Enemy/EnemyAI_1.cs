@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyAI_1 : MonoBehaviour
 {
+    public GameObject bubble;
     public bool canMove;
     public float speed;
     public GameObject groundCheck;
@@ -60,6 +61,7 @@ public class EnemyAI_1 : MonoBehaviour
     }
     public void Hit()
     {
+        bubble.SetActive(true);
         canMove = false;
         animator.SetBool("Hit", true);
     }
