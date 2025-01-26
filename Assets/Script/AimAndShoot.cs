@@ -45,7 +45,6 @@ public class AimAndShoot : MonoBehaviour
         {
             canFire = false;
             GameObject projectile = Instantiate(bullet, weaponTransform.position, Quaternion.identity);
-            Destroy(projectile, 5f);
         }
     }
 }

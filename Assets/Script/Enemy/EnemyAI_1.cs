@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyAI_1 : MonoBehaviour
 {
+    public bool canMove;
     public float speed;
     public GameObject groundCheck;
     public LayerMask groundLayer;
@@ -21,34 +22,41 @@ public class EnemyAI_1 : MonoBehaviour
     [SerializeField] private LayerMask playerLayer;
     private float coolDownTimer = Mathf.Infinity;
 
+    public float freq;
+    public float amp;
+
     // Start is called before the first frame update
     void Start()
     {
-     rb = GetComponent<Rigidbody2D>();   
+     rb = GetComponent<Rigidbody2D>();
+        canMove = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        rb.velocity = Vector2.right * speed * Time.deltaTime;
-        grounded = Physics2D.OverlapCircle(groundCheck.transform.position, .2f, groundLayer);
-        if (!grounded && facingRight)
+        if (canMove)
         {
-            Flip();
-        }
-        else if (!grounded && !facingRight)
-        {
-            Flip();
+
+            rb.velocity = Vector2.right * speed * Time.deltaTime;
+            grounded = Physics2D.OverlapCircle(groundCheck.transform.position, .2f, groundLayer);
+            if (!grounded && facingRight)
+            {
+                Flip();
+            }
+            else if (!grounded && !facingRight)
+            {
+                Flip();
+            }
         }
 
-        //Attack 
-        coolDownTimer += Time.deltaTime;
-        //Attack when player is insight
-        if (PlayerInsight())
-        {
-        }
-        
 
+    }
+    public void Hit()
+    {
+        rb.velocity = Vector2.zero;
+        transform.position = new Vector2(transform.position.x, Mathf.Sin(Time.time * freq) * amp + 5f);
+        groundCheck = null;
     }
 
     private bool PlayerInsight()
