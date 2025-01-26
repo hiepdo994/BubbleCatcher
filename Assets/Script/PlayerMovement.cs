@@ -21,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
 
     public bool KnockFromRight;
 
+    public Animator Animator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,12 +40,16 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetButtonDown("Jump") && IsGrounded())
             {
                 rb.velocity = new Vector2(rb.velocity.x, jump);
+                Animator.SetBool("Jump", true);
             }
+            else Animator.SetBool("Jump", false);
 
             if (Input.GetButtonUp("Jump") && rb.velocity.y > 0)
             {
                 rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+                Animator.SetBool("Jump", true);
             }
+            else Animator.SetBool("Jump", false);
             Flip();
         }
         else
@@ -63,6 +69,16 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        if (horizontal == 0)
+        {
+            Animator.SetInteger("Velocity", 0);
+
+        }
+        if (horizontal == 1 || horizontal < 0)
+        {
+            Animator.SetInteger("Velocity", 1);
+        }
+
     }
 
     private void Flip()
@@ -70,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
         if (facingRight && horizontal < 0f || !facingRight && horizontal > 0f)
         {
             facingRight = !facingRight;
-            transform.Rotate(0f, 180f, 0f);
+            gameObject.transform.localScale = new Vector3(horizontal, 1, 1);
         }
     }
 
