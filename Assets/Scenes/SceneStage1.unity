@@ -24784,10 +24784,6 @@ PrefabInstance:
       value: Player 1
       objectReference: {fileID: 0}
     - target: {fileID: 4315498244040837, guid: 1a2e2f98818401340b3362c8715adbf5, type: 3}
-      propertyPath: bubbles.Array.size
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4315498244040837, guid: 1a2e2f98818401340b3362c8715adbf5, type: 3}
       propertyPath: bubbles.Array.data[0]
       value: 
       objectReference: {fileID: 1721837941}
