@@ -28,4 +28,12 @@ public class StartGame : MonoBehaviour
     {
         Application.Quit();
     }
+    public void Retry()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("Menu");
+    }
 }
