@@ -25,4 +25,5 @@ public class DeadZoneScript : MonoBehaviour
             uiDeadScene.SetActive(true);
         }
     }
+
 }

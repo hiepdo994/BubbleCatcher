@@ -11,7 +11,6 @@ public class PopupTalk : MonoBehaviour
     public string text;
     void Start()
     {
-
     }
 
     // Update is called once per frame
@@ -23,6 +22,10 @@ public class PopupTalk : MonoBehaviour
     {
         popUpBox.SetActive(true);
         popUpText.text = text;
+    }
+    public void closePopUp()
+    {
+        popUpBox.SetActive(false);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
