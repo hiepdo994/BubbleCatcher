@@ -24823,6 +24823,10 @@ PrefabInstance:
       propertyPath: bubbles.Array.data[9]
       value: 
       objectReference: {fileID: 105504232}
+    - target: {fileID: 4315498244040841, guid: 1a2e2f98818401340b3362c8715adbf5, type: 3}
+      propertyPath: jump
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a2e2f98818401340b3362c8715adbf5, type: 3}
 --- !u!114 &2059278377 stripped
