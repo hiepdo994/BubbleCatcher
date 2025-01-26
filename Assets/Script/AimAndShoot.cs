@@ -6,32 +6,22 @@ using UnityEngine;
 
 public class AimAndShoot : MonoBehaviour
 {
-    private Camera mainCam;
-    private Vector3 mousePos;
+    [SerializeField] private Transform attackPoint;
+    [SerializeField] private GameObject[] bubbles;
+
     private float timer;
-    
+    private Quaternion gunRotation;
     public Animator animator;
-    public float scalingDuration;
     public GameObject bullet;
     public Transform weaponTransform;
     public bool canFire;
     public float timeBetweenFire;
 
 
-    private void Start()
-    {
-
-        mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        
-    }
 
     void Update()
     {
-       mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 rotation = mousePos - transform.position;
-        float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
-
-        transform.rotation = Quaternion.Euler(0,0,rotZ);
+        gunRotation = transform.rotation;
 
         if (!canFire)
         {
@@ -52,6 +42,19 @@ public class AimAndShoot : MonoBehaviour
 
     void Firing()
     {
-        GameObject projectile = Instantiate(bullet, weaponTransform.position, Quaternion.identity);
+        bubbles[FindBubble()].transform.position = attackPoint.position;
+        bubbles[FindBubble()].GetComponent<Bullet>().SetDirection(Mathf.Sign(transform.localScale.x));
+
+
+        
+    }
+
+    private int FindBubble()
+    {
+        for(int i = 0; i< bubbles.Length; i++)
+        {
+            if (!bubbles[i].activeInHierarchy) return i;
+        }
+        return 0;
     }
 }
