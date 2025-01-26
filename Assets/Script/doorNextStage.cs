@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class doorNextStage : MonoBehaviour
@@ -28,6 +29,8 @@ public class doorNextStage : MonoBehaviour
             isPlayerNear = true;
             Debug.Log("Player is near the door.");
         }
+
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
